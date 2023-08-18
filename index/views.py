@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . import forms, models
+from .handlers import bot
 
 
 # Create your views here.
@@ -52,6 +53,17 @@ def add_to_cart(request, pk):
 
 def user_cart(request):
     cart = models.Cart.objects.filter(user_id=request.user.id)
+
+    if request.method == 'POST':
+        main_text = 'Новый заказ!\n\n'
+        for i in cart:
+            main_text += f'Товар: {i.user_product}\n' \
+                       f'Количество: {i.user_product_count}\n'
+        bot.send_message(352722879, main_text)
+        cart.delete()
+        return redirect('/')
+
+
     context = {'cart': cart}
     return render(request, 'user_cart.html', context)
 
