@@ -15,10 +15,11 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="/{{ product.product_photo }}" alt="" />
+										<a href="/product/{{ product.id }}"><img src="/{{ product.product_photo }}" alt="" /></a>
+
 										<h2>{{ product.product_price }}</h2>
 										<p>{{ product.product_name }}</p>
-										<a href="/{{ product.id }}" class="btn btn-default add-to-cart">Learn more</a>
+										<a href="/product/{{ product.id }}" class="btn btn-default add-to-cart">Learn more</a>
 									</div>
 								</div>
 							</div>
